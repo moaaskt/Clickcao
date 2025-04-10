@@ -1,12 +1,23 @@
-# React + Vite
+# 🐶 ClickCão
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Uma galeria moderna e interativa de fotos de cachorros, criada com **React**, **Vite** e **Tailwind CSS**. Ideal para quem ama pets e quer navegar por raças de forma prática e visualmente agradável.
 
-Currently, two official plugins are available:
+## 🔥 Tecnologias utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [React](https://reactjs.org/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- HTML5 + CSS3 + JavaScript (ES6+)
 
-## Expanding the ESLint configuration
+## 🎯 Funcionalidades
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- ✅ Interface responsiva e estilosa
+- ✅ Exibição de fotos por raças
+- ✅ Organização em cards
+- ✅ Projeto modular para fácil expansão
+
+## 🛠️ Como rodar o projeto localmente
+
+1. Clone o repositório:
+```bash
+git clone https://github.com/moaaskt/Clickcao.git
