@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion';
+import imagemSobre from '../assets/imagemSobre.jpg';  // Certifique-se de que o caminho da imagem está correto!
 
 export default function Sobre() {
   return (
     <motion.div
-      className="min-h-screen bg-gradient-to-br from-gray-800 to-gray-900 text-white px-6 lg:px-32 py-16 flex flex-col justify-center"
+      className="min-h-screen bg-gradient-to-br from-gray-800 to-gray-900 text-white px-6 lg:px-32 py-16 flex flex-col justify-center bg-cover bg-center bg-fixed"
+      style={{ backgroundImage: `url(${imagemSobre})` }}  // Aplicando a imagem de fundo
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
