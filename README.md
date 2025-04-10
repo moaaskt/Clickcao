@@ -1,4 +1,4 @@
-# 🐶 ClickCão
+ ![ClickCão banner](https://i.ibb.co/LhS8SP6k/Chat-GPT-Image-10-de-abr-de-2025-12-03-14.png)
 
 Uma galeria moderna e interativa de fotos de cachorros, criada com **React**, **Vite** e **Tailwind CSS**. Ideal para quem ama pets e quer navegar por raças de forma prática e visualmente agradável.
 
@@ -16,8 +16,3 @@ Uma galeria moderna e interativa de fotos de cachorros, criada com **React**, **
 - ✅ Organização em cards
 - ✅ Projeto modular para fácil expansão
 
-## 🛠️ Como rodar o projeto localmente
-
-1. Clone o repositório:
-```bash
-git clone https://github.com/moaaskt/Clickcao.git
