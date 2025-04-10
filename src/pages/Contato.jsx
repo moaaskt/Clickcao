@@ -7,7 +7,7 @@ const MotionIcon = motion.div;
 
 export default function Contato() {
   return (
-    <main className="min-h-screen bg-gradient-to-r from-gray-800 to-gray-900 text-white px-4 sm:px-6 lg:px-20 py-10">
+    <main className="min-h-screen bg-gradient-to-r from-gray-800 to-gray-900 text-white px-4 sm:px-6 lg:px-20 py-10 bg-cover bg-center bg-fixed" style={{ backgroundImage: `url(${pugPhone})` }}>
       <motion.h1
         className="text-4xl font-bold text-center mb-12"
         initial={{ opacity: 0, y: -30 }}
@@ -24,7 +24,7 @@ export default function Contato() {
           backgroundSize: 'cover', // Faz a imagem cobrir toda a seção
           backgroundPosition: 'center', // Centraliza a imagem
           backgroundAttachment: 'fixed', // Efeito parallax
-          minHeight: '700px', // Garante que a seção tenha altura suficiente
+          minHeight: '550px', // Garante que a seção tenha altura suficiente
         }}
       >
         {/* Formulário */}
