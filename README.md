@@ -1,4 +1,8 @@
- ![ClickCão banner](https://i.ibb.co/LhS8SP6k/Chat-GPT-Image-10-de-abr-de-2025-12-03-14.png)
+<p align="center">
+  <img src="https://i.ibb.co/LhS8SP6k/Chat-GPT-Image-10-de-abr-de-2025-12-03-14.png" alt="ClickCão Logo" width="220" />
+</p>
+
+
 
 Uma galeria moderna e interativa de fotos de cachorros, criada com **React**, **Vite** e **Tailwind CSS**. Ideal para quem ama pets e quer navegar por raças de forma prática e visualmente agradável.
 
