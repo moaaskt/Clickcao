@@ -39,7 +39,7 @@ export default function Home() {
             key={dog.id}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: index * 0.1 }}
+            transition={{ delay: index * 0.3 }}
           >
             <DogCard dog={dog} onClick={setSelectedDog} />
           </motion.div>
