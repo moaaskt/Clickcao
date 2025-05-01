@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo3.png";
 
 
 export default function Header() {
@@ -19,7 +19,7 @@ export default function Header() {
     <header className="bg-gray-900 text-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
         <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="Logo ClickCão" className="h-10" />
+          <img src={logo} alt="Logo ClickCão" className="h-11 " />
           <span className="text-xl font-bold">ClickCão</span>
         </Link>
         
