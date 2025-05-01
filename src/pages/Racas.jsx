@@ -1,15 +1,38 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import dogs from '../data/dogs';
+import dogsData from '../data/dogs';
 
 export default function Racas() {
   const [selectedBreed, setSelectedBreed] = useState(null);
+  const [dogs, setDogs] = useState(dogsData);
+
+  // Atualiza quando o localStorage muda
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const savedDogs = localStorage.getItem('dogsData');
+      if (savedDogs) {
+        setDogs(JSON.parse(savedDogs));
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    
+    // Verificação periódica para mesma aba
+    const interval = setInterval(() => {
+      const savedDogs = localStorage.getItem('dogsData');
+      if (savedDogs && JSON.stringify(dogs) !== savedDogs) {
+        setDogs(JSON.parse(savedDogs));
+      }
+    }, 500);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      clearInterval(interval);
+    };
+  }, [dogs]);
 
   const breeds = [...new Set(dogs.map((dog) => dog.breed))];
-
-  const dogsByBreed = selectedBreed
-    ? dogs.filter((dog) => dog.breed === selectedBreed)
-    : [];
+  const dogsByBreed = selectedBreed ? dogs.filter((dog) => dog.breed === selectedBreed) : [];
 
   return (
     <motion.div

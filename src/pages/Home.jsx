@@ -1,13 +1,45 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion'; // <- import do framer-motion
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import dogs from '../data/dogs';
 import DogCard from '../components/DogCard';
 
 export default function Home() {
   const [selectedDog, setSelectedDog] = useState(null);
   const [search, setSearch] = useState('');
+  const [dogsList, setDogsList] = useState(dogs);
 
-  const filteredDogs = dogs.filter((dog) =>
+  useEffect(() => {
+    // Função para carregar e atualizar os cães
+    const loadDogs = () => {
+      const savedDogs = localStorage.getItem('dogsData');
+      if (savedDogs) {
+        setDogsList(JSON.parse(savedDogs));
+      } else {
+        setDogsList(dogs); // Usa os dados padrão se não houver no localStorage
+      }
+    };
+
+    // Ouvinte para eventos personalizados de atualização
+    const handleDogsUpdated = () => {
+      loadDogs();
+    };
+
+    // Carrega os dados inicialmente
+    loadDogs();
+
+    // Configura os listeners de eventos
+    window.addEventListener('dogsUpdated', handleDogsUpdated);
+    window.addEventListener('storage', handleDogsUpdated); // Para atualizações entre abas
+
+    // Limpeza dos listeners
+    return () => {
+      window.removeEventListener('dogsUpdated', handleDogsUpdated);
+      window.removeEventListener('storage', handleDogsUpdated);
+    };
+  }, []);
+
+  // Filtra os cães baseado na busca
+  const filteredDogs = dogsList.filter((dog) =>
     dog.name.toLowerCase().includes(search.toLowerCase()) ||
     dog.breed.toLowerCase().includes(search.toLowerCase())
   );
@@ -27,41 +59,55 @@ export default function Home() {
         <input
           type="text"
           placeholder="Buscar por nome ou raça..."
-          className="w-full p-3 rounded-lg text-black"
+          className="w-full p-3 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-yellow-400"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>
 
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {filteredDogs.map((dog, index) => (
-          <motion.div
-            key={dog.id}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: index * 0.3 }}
-          >
-            <DogCard dog={dog} onClick={setSelectedDog} />
-          </motion.div>
-        ))}
-      </div>
+      {filteredDogs.length === 0 ? (
+        <div className="text-center text-xl py-10">
+          Nenhum doguinho encontrado com "{search}"
+        </div>
+      ) : (
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {filteredDogs.map((dog, index) => (
+            <motion.div
+              key={dog.id}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ scale: 1.03 }}
+            >
+              <DogCard 
+                dog={dog} 
+                onClick={() => setSelectedDog(dog)}
+              />
+            </motion.div>
+          ))}
+        </div>
+      )}
 
-      {/* Modal do dog */}
+      {/* Modal de detalhes do dog */}
       {selectedDog && (
         <motion.div
-          className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setSelectedDog(null)}
         >
           <motion.div
-            className="bg-white text-black rounded-2xl p-6 w-11/12 max-w-md relative"
+            className="bg-white text-black rounded-2xl p-6 w-full max-w-md relative"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.3 }}
+            transition={{ type: 'spring', stiffness: 300 }}
+            onClick={(e) => e.stopPropagation()}
           >
             <button
-              className="absolute top-2 right-3 text-2xl font-bold text-red-500"
+              className="absolute top-2 right-3 text-2xl font-bold text-red-500 hover:text-red-700"
               onClick={() => setSelectedDog(null)}
+              aria-label="Fechar modal"
             >
               &times;
             </button>
@@ -69,9 +115,15 @@ export default function Home() {
               src={selectedDog.image}
               alt={selectedDog.name}
               className="w-full h-64 object-cover rounded-xl mb-4"
+              loading="lazy"
             />
             <h2 className="text-2xl font-bold mb-2">{selectedDog.name}</h2>
-            <p className="text-lg text-gray-700">{selectedDog.breed}</p>
+            <p className="text-lg text-gray-700 mb-1">
+              <span className="font-semibold">Raça:</span> {selectedDog.breed}
+            </p>
+            <p className="text-lg text-gray-700">
+              <span className="font-semibold">ID:</span> {selectedDog.id}
+            </p>
           </motion.div>
         </motion.div>
       )}

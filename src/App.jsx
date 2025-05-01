@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Racas from './pages/Racas';
 import Sobre from './pages/Sobre';
 import Contato from './pages/Contato';
+import CadastrarCao from './pages/CadastrarCao/CadastrarCao';
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
       <Route path="/racas" element={<Racas />} />
       <Route path="/sobre" element={<Sobre />} />
       <Route path="/contato" element={<Contato />} />
+      <Route path="/cadastrar-cao" element={<CadastrarCao />} />
     </Routes>
   </Router>
 </div>

@@ -3,14 +3,16 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import logo from "../assets/logo.png";
 
+
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navLinks = [
     { name: "Início", to: "/" },
     { name: "Raças", to: "/racas" },
+    { name: "Cadastrar Cão", to: "/cadastrar-cao" },
     { name: "Sobre", to: "/sobre" },
-    { name: "Contato", to: "/contato" },
+    { name: "Contato", to: "/contato" }
   ];
 
   return (
@@ -20,6 +22,7 @@ export default function Header() {
           <img src={logo} alt="Logo ClickCão" className="h-10" />
           <span className="text-xl font-bold">ClickCão</span>
         </Link>
+        
 
         {/* Menu desktop */}
         <nav className="hidden md:flex gap-6">
@@ -31,6 +34,7 @@ export default function Header() {
             >
               {link.name}
             </Link>
+            
           ))}
         </nav>
 
