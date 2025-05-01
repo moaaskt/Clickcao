@@ -45,23 +45,46 @@ export default function Racas() {
     ? dogsList.filter((dog) => dog.breed === selectedBreed) 
     : [];
 
-  return (
+   return (
     <motion.div
-      className="min-h-screen bg-gradient-to-br from-gray-800 to-gray-900 text-white px-4 sm:px-6 lg:px-20 py-10"
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
+      className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white px-4 sm:px-6 lg:px-20 py-12"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
     >
-      <h1 className="text-4xl font-bold mb-6 text-center">Raças</h1>
+      {/* Cabeçalho */}
+      <motion.div
+        className="text-center mb-12"
+        initial={{ y: -20 }}
+        animate={{ y: 0 }}
+        transition={{ delay: 0.2 }}
+      >
+        <h1 className="text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-yellow-600">
+          Raças Caninas
+        </h1>
+        <p className="text-gray-300 max-w-2xl mx-auto">
+          Explore nossa coleção de doguinhos por raça. Clique em uma raça para ver todos os membros!
+        </p>
+      </motion.div>
 
-      <div className="flex flex-wrap justify-center gap-4 mb-10">
+      {/* Filtro de Raças */}
+      <motion.div
+        className="flex flex-wrap justify-center gap-3 mb-16"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.4 }}
+      >
         {breeds.map((breed, index) => (
           <motion.button
             key={breed}
             onClick={() => setSelectedBreed(breed)}
-            className={`px-4 py-2 rounded-full border transition hover:bg-yellow-400 hover:text-black ${
-              selectedBreed === breed ? 'bg-yellow-400 text-black' : 'border-yellow-400'
+            className={`px-5 py-2 rounded-full font-medium transition-all duration-300 ${
+              selectedBreed === breed
+                ? 'bg-yellow-400 text-gray-900 shadow-lg shadow-yellow-400/30'
+                : 'bg-gray-700 hover:bg-gray-600 text-gray-100 border border-gray-500'
             }`}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.05 }}
@@ -69,38 +92,63 @@ export default function Racas() {
             {breed}
           </motion.button>
         ))}
-      </div>
+      </motion.div>
 
+      {/* Lista de Cães */}
       {selectedBreed && (
-        <>
-          <h2 className="text-2xl font-semibold mb-4 text-center">
-            Doguinhos da raça: {selectedBreed}
+        <motion.section
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+        >
+          <h2 className="text-3xl font-bold mb-8 text-center text-yellow-400">
+            {selectedBreed} <span className="text-white">({dogsByBreed.length})</span>
           </h2>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {dogsByBreed.map((dog, index) => (
               <motion.div
                 key={dog.id}
-                className="bg-white rounded-xl overflow-hidden shadow-lg text-black"
-                initial={{ opacity: 0, scale: 0.95 }}
+                className="group bg-gray-700 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-gray-600"
+                initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ scale: 1.03 }}
+                transition={{ delay: index * 0.1, type: 'spring' }}
+                whileHover={{ y: -5 }}
               >
-                <img
-                  src={dog.image}
-                  alt={dog.name}
-                  className="w-full h-60 object-cover"
-                  loading="lazy"
-                />
-                <div className="p-4">
-                  <h3 className="text-xl font-bold">{dog.name}</h3>
-                  <p className="text-gray-600">Raça: {dog.breed}</p>
-                  <p className="text-gray-500 text-sm">ID: {dog.id}</p>
+                <div className="relative h-60 overflow-hidden">
+                  <motion.img
+                    src={dog.image}
+                    alt={dog.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <span className="text-yellow-400 font-bold">ID: {dog.id}</span>
+                  </div>
+                </div>
+                <div className="p-5">
+                  <h3 className="text-xl font-bold text-white mb-1">{dog.name}</h3>
+                  <div className="flex items-center">
+                    <span className="inline-block w-3 h-3 rounded-full bg-yellow-400 mr-2"></span>
+                    <p className="text-gray-300">{dog.breed}</p>
+                  </div>
                 </div>
               </motion.div>
             ))}
           </div>
-        </>
+        </motion.section>
+      )}
+
+      {/* Rodapé */}
+      {!selectedBreed && (
+        <motion.div
+          className="text-center mt-20 text-gray-400"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+        >
+          <p>Selecione uma raça para ver os doguinhos</p>
+        </motion.div>
       )}
     </motion.div>
   );
