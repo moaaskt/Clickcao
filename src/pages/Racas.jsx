@@ -1,38 +1,49 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import dogsData from '../data/dogs';
+import dogs, { defaultDogs } from '../data/dogs'; // Importação correta
 
 export default function Racas() {
   const [selectedBreed, setSelectedBreed] = useState(null);
-  const [dogs, setDogs] = useState(dogsData);
+  const [dogsList, setDogsList] = useState(dogs);
 
   // Atualiza quando o localStorage muda
   useEffect(() => {
-    const handleStorageChange = () => {
+    const loadDogs = () => {
       const savedDogs = localStorage.getItem('dogsData');
       if (savedDogs) {
-        setDogs(JSON.parse(savedDogs));
+        const parsedDogs = JSON.parse(savedDogs);
+        // Mescla com defaultDogs, evitando duplicatas por ID
+        const mergedDogs = [
+          ...parsedDogs,
+          ...defaultDogs.filter(
+            defaultDog => !parsedDogs.some(savedDog => savedDog.id === defaultDog.id)
+          )
+        ];
+        setDogsList(mergedDogs);
+      } else {
+        setDogsList([...defaultDogs]); // Usa os dados padrão
       }
     };
 
+    const handleStorageChange = () => loadDogs();
+
+    // Carrega inicialmente
+    loadDogs();
+
+    // Configura listeners
+    window.addEventListener('dogsUpdated', handleStorageChange);
     window.addEventListener('storage', handleStorageChange);
-    
-    // Verificação periódica para mesma aba
-    const interval = setInterval(() => {
-      const savedDogs = localStorage.getItem('dogsData');
-      if (savedDogs && JSON.stringify(dogs) !== savedDogs) {
-        setDogs(JSON.parse(savedDogs));
-      }
-    }, 500);
 
     return () => {
+      window.removeEventListener('dogsUpdated', handleStorageChange);
       window.removeEventListener('storage', handleStorageChange);
-      clearInterval(interval);
     };
-  }, [dogs]);
+  }, []);
 
-  const breeds = [...new Set(dogs.map((dog) => dog.breed))];
-  const dogsByBreed = selectedBreed ? dogs.filter((dog) => dog.breed === selectedBreed) : [];
+  const breeds = [...new Set(dogsList.map((dog) => dog.breed))];
+  const dogsByBreed = selectedBreed 
+    ? dogsList.filter((dog) => dog.breed === selectedBreed) 
+    : [];
 
   return (
     <motion.div
@@ -73,15 +84,18 @@ export default function Racas() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.1 }}
+                whileHover={{ scale: 1.03 }}
               >
                 <img
                   src={dog.image}
                   alt={dog.name}
                   className="w-full h-60 object-cover"
+                  loading="lazy"
                 />
                 <div className="p-4">
                   <h3 className="text-xl font-bold">{dog.name}</h3>
-                  <p className="text-gray-600">{dog.breed}</p>
+                  <p className="text-gray-600">Raça: {dog.breed}</p>
+                  <p className="text-gray-500 text-sm">ID: {dog.id}</p>
                 </div>
               </motion.div>
             ))}

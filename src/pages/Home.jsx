@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import dogs from '../data/dogs';
+import dogs, { defaultDogs } from '../data/dogs'; // Importação correta agora
 import DogCard from '../components/DogCard';
 
 export default function Home() {
@@ -9,34 +9,38 @@ export default function Home() {
   const [dogsList, setDogsList] = useState(dogs);
 
   useEffect(() => {
-    // Função para carregar e atualizar os cães
     const loadDogs = () => {
       const savedDogs = localStorage.getItem('dogsData');
       if (savedDogs) {
-        setDogsList(JSON.parse(savedDogs));
+        const parsedDogs = JSON.parse(savedDogs);
+        // Mescla garantindo que os cães padrão não sejam duplicados
+        const mergedDogs = [
+          ...parsedDogs,
+          ...defaultDogs.filter(
+            defaultDog => !parsedDogs.some(savedDog => savedDog.id === defaultDog.id)
+          )
+        ];
+        setDogsList(mergedDogs);
       } else {
-        setDogsList(dogs); // Usa os dados padrão se não houver no localStorage
+        setDogsList([...defaultDogs]);
       }
     };
 
-    // Ouvinte para eventos personalizados de atualização
-    const handleDogsUpdated = () => {
-      loadDogs();
-    };
+    const handleDogsUpdated = () => loadDogs();
 
-    // Carrega os dados inicialmente
+    // Carrega inicialmente
     loadDogs();
 
-    // Configura os listeners de eventos
+    // Configura listeners
     window.addEventListener('dogsUpdated', handleDogsUpdated);
-    window.addEventListener('storage', handleDogsUpdated); // Para atualizações entre abas
+    window.addEventListener('storage', handleDogsUpdated);
 
-    // Limpeza dos listeners
     return () => {
       window.removeEventListener('dogsUpdated', handleDogsUpdated);
       window.removeEventListener('storage', handleDogsUpdated);
     };
   }, []);
+
 
   // Filtra os cães baseado na busca
   const filteredDogs = dogsList.filter((dog) =>

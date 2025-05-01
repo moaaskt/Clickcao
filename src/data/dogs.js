@@ -1,10 +1,7 @@
 // data/dogs.js
-export const refreshDogs = () => {
-  const savedDogs = localStorage.getItem('dogsData');
-  return savedDogs ? JSON.parse(savedDogs) : defaultDogs;
-};
-// Dados padrão (fallback)
-const defaultDogs = [
+
+// Dados padrão (agora exportado explicitamente)
+export const defaultDogs = [
   { id: 1, name: 'Bolt', breed: 'Husky', image: 'https://placedog.net/500/400?id=1' },
   { id: 2, name: 'Luna', breed: 'Labrador', image: 'https://placedog.net/500/400?id=2' },
   { id: 3, name: 'Max', breed: 'Pug', image: 'https://placedog.net/500/400?id=3' },
@@ -14,17 +11,17 @@ const defaultDogs = [
   { id: 7, name: 'Bella2', breed: 'Shih-tzus', image: 'https://placedog.net/500/400?id=7' }
 ];
 
-// Carrega os dados do localStorage ou usa os padrões
+// Função para carregar os cães
 const loadDogs = () => {
   try {
     const savedDogs = localStorage.getItem('dogsData');
-    return savedDogs ? JSON.parse(savedDogs) : defaultDogs;
+    return savedDogs ? JSON.parse(savedDogs) : [...defaultDogs];
   } catch (error) {
     console.error('Erro ao carregar cães:', error);
-    return defaultDogs;
+    return [...defaultDogs];
   }
 };
 
-const dogs = loadDogs();
-
+// Exporta tanto a lista carregada quanto os defaults
+export const dogs = loadDogs();
 export default dogs;
