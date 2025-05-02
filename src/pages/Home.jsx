@@ -198,7 +198,7 @@ export default function Home() {
                 </span>
               </div>
               
-              <div className="grid grid-cols-2 gap-4 mb-6">
+              <div className="grid grid-cols-3 gap-4 mb-5">
                 <div className="bg-gray-700 p-4 rounded-lg">
                   <h4 className="text-gray-400 text-sm mb-1">Raça</h4>
                   <p className="text-lg font-medium">{selectedDog.breed}</p>
@@ -207,6 +207,11 @@ export default function Home() {
                   <h4 className="text-gray-400 text-sm mb-1">Tipo</h4>
                   <p className="text-lg font-medium">Doméstico</p>
                 </div>
+                <div className="bg-gray-700 p-4 rounded-lg">
+                  <h4 className="text-gray-400 text-sm mb-1">Situação</h4>
+                  <p className="text font-medium">Disponivel para adoção</p>
+                </div>
+              
               </div>
               
               <button className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-3 px-4 rounded-lg transition-colors">
