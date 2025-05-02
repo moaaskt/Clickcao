@@ -2,13 +2,13 @@
 
 // Dados padrão (agora exportado explicitamente)
 export const defaultDogs = [
-  { id: 1, name: 'Bolt', breed: 'Husky', image: 'https://placedog.net/500/400?id=1' },
-  { id: 2, name: 'Luna', breed: 'Labrador', image: 'https://placedog.net/500/400?id=2' },
-  { id: 3, name: 'Max', breed: 'Pug', image: 'https://placedog.net/500/400?id=3' },
-  { id: 4, name: 'Nina', breed: 'Golden Retriever', image: 'https://placedog.net/500/400?id=4' },
-  { id: 5, name: 'Thor', breed: 'Pastor Alemão', image: 'https://placedog.net/500/400?id=5' },
-  { id: 6, name: 'Bella', breed: 'Shih-tzu', image: 'https://placedog.net/500/400?id=6' },
-  { id: 7, name: 'Bella2', breed: 'Shih-tzus', image: 'https://placedog.net/500/400?id=7' }
+  { id: 1, name: 'Bolt', breed: 'Vira-lata', image: 'https://i.ibb.co/Lz90kzRg/image-fx-36.png' },
+  { id: 2, name: 'Luna', breed: 'Vira-lata', image: 'https://i.ibb.co/Rp14dj9q/image-fx-18.png' },
+  { id: 3, name: 'Max', breed: 'Vira-lata', image: 'https://i.ibb.co/8D7zxnPt/image-fx-31.png' },
+  { id: 4, name: 'Nina', breed: 'Vira-lata', image: 'https://i.ibb.co/WNPCtkGR/image-fx-26.png' },
+  { id: 5, name: 'Thor', breed: 'Vira-lata', image: 'https://i.ibb.co/LTyXXmP/image-fx-24.png' },
+  { id: 6, name: 'Bella', breed: 'Vira-lata', image: 'https://i.ibb.co/27mWjmb3/image-fx-33.png ' },
+  { id: 7, name: 'Sol', breed: 'Vira-lata', image: ' https://i.ibb.co/nqjsKN3H/image-fx-21.png' }
 ];
 
 // Função para carregar os cães
