@@ -198,7 +198,7 @@ export default function Home() {
                 </span>
               </div>
               
-              <div className="grid grid-cols-3 gap-4 mb-5">
+              <div className="grid grid-cols-1 gap-4 mb-5">
                 <div className="bg-gray-700 p-4 rounded-lg">
                   <h4 className="text-gray-400 text-sm mb-1">Raça</h4>
                   <p className="text-lg font-medium">{selectedDog.breed}</p>
