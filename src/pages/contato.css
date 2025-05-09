@@ -6,3 +6,6 @@
   .animate-subtleZoom {
     animation: subtleZoom 30s infinite alternate ease-in-out;
   }
+  body {
+font-family: 'Fredoka', sans-serif;
+  }

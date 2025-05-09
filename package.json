@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource/baloo-2": "^5.2.5",
+    "@fontsource/fredoka": "^5.2.7",
+    "@fontsource/poppins": "^5.2.6",
     "framer-motion": "^12.6.3",
     "lucide-react": "^0.487.0",
     "react": "^19.0.0",

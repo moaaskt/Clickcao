@@ -8,6 +8,8 @@
 html, body {
   width: 100%;
   overflow-x: hidden;
+  fontFamily: 'Fredoka', sans-serif;
+  
 }
 /* No seu arquivo CSS global */
 * {

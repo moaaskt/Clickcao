@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import dogs, { defaultDogs } from '../data/dogs';
+import '../index.css'
+
+
 
 export default function Home() {
   const [selectedDog, setSelectedDog] = useState(null);
@@ -65,7 +68,7 @@ export default function Home() {
         <h1 className="text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-yellow-600">
           Galeria de Doguinhos
         </h1>
-        <p className="text-gray-300 max-w-2xl mx-auto">
+        <p className="text-gray-500 max-w-2xl mx-auto">
           Conheça nossos adoráveis doguinhos para doação. 
         </p>
       </motion.div>
