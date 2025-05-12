@@ -98,6 +98,30 @@ export const defaultDogs = [
     breed: "Vira-Lata",
     image: "https://i.ibb.co/hRXtWdbQ/image-fx-53.png",
   },
+  {
+    id: 17,
+    name: "Hiana",
+    breed: "Vira-Lata",
+    image: "https://i.ibb.co/vb9yJvT/Image-fx-12.png",
+  },
+  {
+    id: 18,
+    name: "Maria",
+    breed: "Vira-Lata",
+    image: "https://i.ibb.co/ksZNdWYC/Image-fx-13.png",
+  },
+  {
+    id: 19,
+    name: "Manu",
+    breed: "Vira-Lata",
+    image: "https://i.ibb.co/tM9F6BzQ/Image-fx-11.png",
+  },
+  {
+    id: 20,
+    name: "Patrick",
+    breed: "Vira-Lata",
+    image: "https://i.ibb.co/vCZzhkPc/Image-fx-10.png",
+  },
 ];
 
 // Função para carregar os cães
