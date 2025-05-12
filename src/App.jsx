@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+import Footer from "./components/Footer";
 import Header from './components/Header';
 import Home from './pages/Home';
 import Racas from './pages/Racas';
@@ -19,6 +20,7 @@ export default function App() {
       <Route path="/contato" element={<Contato />} />
       <Route path="/cadastrar-cao" element={<CadastrarCao />} />
     </Routes>
+      <Footer />
   </Router>
 </div>
 
