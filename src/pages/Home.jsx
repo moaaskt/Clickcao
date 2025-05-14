@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import dogs, { defaultDogs } from '../data/dogs';
-import '../index.css';
+import styles from './Home.module.css';
+
 
 export default function Home() {
   const [selectedDog, setSelectedDog] = useState(null);
@@ -59,7 +60,7 @@ export default function Home() {
 
       {/* Cabeçalho */}
       <motion.div
-        className="text-center mb-12 bg-black/50 p-4 rounded-xl"
+        className={styles.header}
         initial={{ y: -20 }}
         animate={{ y: 0 }}
         transition={{ delay: 0.2 }}
@@ -67,8 +68,8 @@ export default function Home() {
         <h1 className="text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-yellow-600">
           Galeria de Doguinhos
         </h1>
-        <p className="text-gray-300 max-w-2xl mx-auto">
-          Conheça nossos adoráveis doguinhos para doação. 
+        <p className="text-gray-300 max-w-2x1 mx-auto">
+          Conheça nossos adoráveis doguinhos para doação.
         </p>
       </motion.div>
 
