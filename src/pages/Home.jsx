@@ -166,27 +166,27 @@ export default function Home() {
       {/* Modal */}
       {selectedDog && (
         <motion.div
-        className={styles.modalOverlay}
+          className={styles.modalOverlay}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={() => setSelectedDog(null)}
         >
           <motion.div
-            className="bg-gray-800 text-white rounded-2xl overflow-hidden w-full max-w-2xl shadow-2xl border border-gray-700"
+            className={styles.modalContent}
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ type: 'spring', stiffness: 300 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative h-96">
+            <div className={styles.modalImageContainer}>
               <img
                 src={selectedDog.image}
                 alt={selectedDog.name}
-                className="w-full h-full object-cover"
+                className={styles.modalImage}
               />
               <button
-                className="absolute top-4 right-4 bg-gray-900/80 hover:bg-gray-700 text-white rounded-full p-2 transition-colors"
+                className={styles.closeButton}
                 onClick={() => setSelectedDog(null)}
                 aria-label="Fechar modal"
               >
@@ -195,28 +195,26 @@ export default function Home() {
                 </svg>
               </button>
             </div>
-            <div className="p-6">
-              <div className="flex justify-between items-start mb-4">
-                <h2 className="text-3xl font-bold">{selectedDog.name}</h2>
-                <span className="bg-yellow-400 text-gray-900 px-3 py-1 rounded-full text-sm font-bold">
-                  ID: {selectedDog.id}
-                </span>
+            <div className={styles.modalBody}>
+            <div className={styles.modalHeader}>
+            <h2 className={styles.modalTitle}>{selectedDog.name}</h2>
+            <span className={styles.modalId}>ID: {selectedDog.id}</span>
               </div>
-              <div className="grid grid-cols-2 gap-3 mb-4">
-                <div className="bg-gray-700 p-4 rounded-lg">
-                  <h4 className="text-gray-400 text-sm mb-1">Raça</h4>
-                  <p className="text-lg font-medium">{selectedDog.breed}</p>
+              <div className={styles.modalDetails}>
+                <div className={styles.detailBox}>
+                  <h4 className={styles.detailLabel}>Raça</h4>
+                  <p className={styles.detailValue}>{selectedDog.breed}</p>
                 </div>
-                <div className="bg-gray-700 p-4 rounded-lg">
-                  <h4 className="text-gray-400 text-sm mb-1">Tipo</h4>
-                  <p className="text-lg font-medium">Doméstico</p>
+                <div className={styles.detailBox}>
+                  <h4 className={styles.detailLabel}>Tipo</h4>
+                  <p className={styles.detailValue}>Doméstico</p>
                 </div>
-                <div className="bg-gray-700 p-4 rounded-lg">
-                  <h4 className="text-gray-400 text-sm mb-1">Situação</h4>
-                  <p className="text font-medium">Disponível para adoção</p>
+                <div className={styles.detailBox}>
+                  <h4 className={styles.detailLabel}>Situação</h4>
+                  <p className={styles.detailValue}>Disponível para adoção</p>
                 </div>
               </div>
-              <button className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-3 px-4 rounded-lg transition-colors">
+              <button className={styles.adoptButton}>
                 Adotar {selectedDog.name} 🐾
               </button>
             </div>
