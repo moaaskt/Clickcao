@@ -1,40 +1,213 @@
-/* Home.module.css */
+.container {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  padding: 3rem 1rem;
+}
+
 .header {
   text-align: center;
   margin-bottom: 3rem;
   padding: 1rem;
   border-radius: 1rem;
-  background: transparent; /* Remove o fundo cinza */
 }
 
-.cardList {
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, #facc15, #ca8a04);
+}
+
+.subtitle {
+  color: #d1d5db;
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.searchBar {
+  margin-bottom: 3rem;
+  max-width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 1rem;
+  padding-left: 3rem;
+  border-radius: 1rem;
+  color: black;
+  outline: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cardGrid {
   display: grid;
   gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  background-color: rgba(255, 255, 255, 0);
   padding: 1rem;
   border-radius: 1rem;
-  background: transparent; /* Remove fundo escuro atrás das cards */
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
 .card {
+  background-color: #374151;
   border-radius: 1.5rem;
   overflow: hidden;
-  transition: box-shadow 0.3s ease;
-  border: 1px solid #444;
-  background-color: #111; /* Fica mais clean no dark mode */
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #4b5563;
+  transition: box-shadow 0.3s;
 }
 
-.modalCard {
-  background-color: #1a1a1a;
-  border: 1px solid #333;
-  border-radius: 1.5rem;
+.card:hover {
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
+}
+
+.cardImageContainer {
+  position: relative;
+  height: 15rem;
   overflow: hidden;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.card:hover .cardImage {
+  transform: scale(1.05);
+}
+
+.cardInfo {
+  padding: 1.25rem;
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: bold;
   color: white;
+  margin-bottom: 0.5rem;
 }
 
-.notFound {
-  text-align: center;
-  padding: 4rem 0;
-  border-radius: 1rem;
-  background: transparent; /* Remove fundo escuro */
+.cardBreed {
+  color: #d1d5db;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 1rem;
+}
+
+.modalContent {
+  background-color: #1f2937;
+  color: white;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  width: 100%;
+  max-width: 40rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  border: 1px solid #374151;
+}
+
+.modalImageContainer {
+  position: relative;
+  height: 24rem;
+}
+
+.modalImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: rgba(17, 24, 39, 0.8);
+  color: white;
+  border-radius: 9999px;
+  padding: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+.closeButton:hover {
+  background-color: #374151;
+}
+
+.modalBody {
+  padding: 1.5rem;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.modalTitle {
+  font-size: 1.875rem;
+  font-weight: bold;
+}
+
+.modalId {
+  background-color: #facc15;
+  color: #1f2937;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.modalDetails {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.detailBox {
+  background-color: #374151;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.detailLabel {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.detailValue {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.adoptButton {
+  width: 100%;
+  background-color: #facc15;
+  color: #1f2937;
+  font-weight: bold;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+.adoptButton:hover {
+  background-color: #fbbf24;
 }

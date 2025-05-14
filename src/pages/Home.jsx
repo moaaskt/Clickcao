@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import dogs, { defaultDogs } from '../data/dogs';
 import styles from './Home.module.css';
+import { s } from 'framer-motion/client';
 
 
 export default function Home() {
@@ -51,7 +52,7 @@ export default function Home() {
 
   return (
     <motion.div
-      className="min-h-screen bg-cover bg-center bg-no-repeat text-white px-4 sm:px-6 lg:px-20 py-12"
+      className={styles.container}
       style={{ backgroundImage: `url('src/assets/dog-home.jpg')` }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -65,17 +66,18 @@ export default function Home() {
         animate={{ y: 0 }}
         transition={{ delay: 0.2 }}
       >
-        <h1 className="text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-yellow-600">
+        <h1 className={styles.title}>
           Galeria de Doguinhos
         </h1>
-        <p className="text-gray-300 max-w-2x1 mx-auto">
+        <p className=
+          {styles.subtitle}>
           Conheça nossos adoráveis doguinhos para doação.
         </p>
       </motion.div>
 
       {/* Barra de Busca */}
       <motion.div
-        className="mb-12 max-w-2xl mx-auto"
+        className={styles.searchBar}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4 }}
@@ -84,12 +86,12 @@ export default function Home() {
           <input
             type="text"
             placeholder="Buscar por nome ou raça..."
-            className="w-full p-4 pl-12 rounded-xl text-black focus:outline-none focus:ring-2 focus:ring-yellow-400 shadow-lg"
+            className={styles.searchInput}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
           <svg
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-500"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-100"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -121,7 +123,7 @@ export default function Home() {
             </motion.div>
           ) : (
             <motion.div
-              className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 bg-black/40 p-4 rounded-xl"
+              className={styles.cardGrid}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
@@ -129,7 +131,7 @@ export default function Home() {
               {filteredDogs.map((dog, index) => (
                 <motion.div
                   key={dog.id}
-                  className="group bg-gray-700 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-gray-600"
+                  className={styles.card}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
@@ -140,18 +142,18 @@ export default function Home() {
                     <motion.img
                       src={dog.image}
                       alt={dog.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className={styles.cardImage}
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                       <span className="text-yellow-400 font-bold">ID: {dog.id}</span>
                     </div>
                   </div>
-                  <div className="p-5">
-                    <h3 className="text-xl font-bold text-white mb-1">{dog.name}</h3>
+                  <div className={styles.cardInfo}>
+                    <h3 className={styles.cardTitle}>{dog.name}</h3>
                     <div className="flex items-center">
                       <span className="inline-block w-3 h-3 rounded-full bg-yellow-400 mr-2"></span>
-                      <p className="text-gray-300">{dog.breed}</p>
+                      <p className={styles.cardBreed}>{dog.breed}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -164,7 +166,7 @@ export default function Home() {
       {/* Modal */}
       {selectedDog && (
         <motion.div
-          className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4 backdrop-blur-sm"
+        className={styles.modalOverlay}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
