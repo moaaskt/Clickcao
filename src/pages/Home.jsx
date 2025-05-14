@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import dogs, { defaultDogs } from '../data/dogs';
-import '../index.css'
-
-
+import '../index.css';
 
 export default function Home() {
   const [selectedDog, setSelectedDog] = useState(null);
@@ -11,17 +9,16 @@ export default function Home() {
   const [dogsList, setDogsList] = useState(dogs);
   const [isLoading, setIsLoading] = useState(true);
 
-
   useEffect(() => {
     const loadDogs = () => {
       setIsLoading(true);
       const savedDogs = localStorage.getItem('dogsData');
-      
+
       if (savedDogs) {
         const parsedDogs = JSON.parse(savedDogs);
         const mergedDogs = [
           ...parsedDogs,
-          ...defaultDogs.filter(defaultDog => 
+          ...defaultDogs.filter(defaultDog =>
             !parsedDogs.some(savedDog => savedDog.id === defaultDog.id)
           )
         ];
@@ -29,17 +26,17 @@ export default function Home() {
       } else {
         setDogsList([...defaultDogs]);
       }
-      
+
       setTimeout(() => setIsLoading(false), 500);
     };
-  
+
     const handleDogsUpdated = () => loadDogs();
-  
+
     loadDogs();
-  
+
     window.addEventListener('dogsUpdated', handleDogsUpdated);
     window.addEventListener('storage', handleDogsUpdated);
-  
+
     return () => {
       window.removeEventListener('dogsUpdated', handleDogsUpdated);
       window.removeEventListener('storage', handleDogsUpdated);
@@ -53,14 +50,16 @@ export default function Home() {
 
   return (
     <motion.div
-      className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white px-4 sm:px-6 lg:px-20 py-12"
+      className="min-h-screen bg-cover bg-center bg-no-repeat text-white px-4 sm:px-6 lg:px-20 py-12"
+      style={{ backgroundImage: `url('src/assets/dog-home.jpg')` }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
+
       {/* Cabeçalho */}
       <motion.div
-        className="text-center mb-12"
+        className="text-center mb-12 bg-black/50 p-4 rounded-xl"
         initial={{ y: -20 }}
         animate={{ y: 0 }}
         transition={{ delay: 0.2 }}
@@ -68,7 +67,7 @@ export default function Home() {
         <h1 className="text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-yellow-600">
           Galeria de Doguinhos
         </h1>
-        <p className="text-gray-500 max-w-2xl mx-auto">
+        <p className="text-gray-300 max-w-2xl mx-auto">
           Conheça nossos adoráveis doguinhos para doação. 
         </p>
       </motion.div>
@@ -84,7 +83,7 @@ export default function Home() {
           <input
             type="text"
             placeholder="Buscar por nome ou raça..."
-            className="w-full p-4 pl-12 rounded-xl text-white-900 focus:outline-none focus:ring-2 focus:ring-yellow-400 shadow-lg"
+            className="w-full p-4 pl-12 rounded-xl text-black focus:outline-none focus:ring-2 focus:ring-yellow-400 shadow-lg"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
@@ -111,17 +110,17 @@ export default function Home() {
         <>
           {filteredDogs.length === 0 ? (
             <motion.div
-              className="text-center py-16"
+              className="text-center py-16 bg-black/60 rounded-xl"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             >
               <div className="text-6xl mb-4">🐾</div>
               <h3 className="text-2xl font-bold text-yellow-400 mb-2">Nenhum doguinho encontrado</h3>
-              <p className="text-gray-400">Não encontramos resultados para "{search}"</p>
+              <p className="text-gray-300">Não encontramos resultados para "{search}"</p>
             </motion.div>
           ) : (
             <motion.div
-              className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+              className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 bg-black/40 p-4 rounded-xl"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
@@ -161,7 +160,7 @@ export default function Home() {
         </>
       )}
 
-      {/* Modal de Detalhes */}
+      {/* Modal */}
       {selectedDog && (
         <motion.div
           className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4 backdrop-blur-sm"
@@ -200,7 +199,6 @@ export default function Home() {
                   ID: {selectedDog.id}
                 </span>
               </div>
-              
               <div className="grid grid-cols-2 gap-3 mb-4">
                 <div className="bg-gray-700 p-4 rounded-lg">
                   <h4 className="text-gray-400 text-sm mb-1">Raça</h4>
@@ -212,11 +210,9 @@ export default function Home() {
                 </div>
                 <div className="bg-gray-700 p-4 rounded-lg">
                   <h4 className="text-gray-400 text-sm mb-1">Situação</h4>
-                  <p className="text font-medium">Disponivel para adoção</p>
+                  <p className="text font-medium">Disponível para adoção</p>
                 </div>
-              
               </div>
-              
               <button className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-3 px-4 rounded-lg transition-colors">
                 Adotar {selectedDog.name} 🐾
               </button>
